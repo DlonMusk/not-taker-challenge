@@ -51,9 +51,7 @@ notes.delete('/:id', (req, res) => {
 
     // find the index
     for (let i = 0; i < data.length; i++) {
-        console.info(data[i].id);
         if (data[i].id === req.params.id) {
-            console.info(i);
             index = i;
             break;
         }
