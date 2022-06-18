@@ -4,7 +4,7 @@ const path = require('path');
 const api = require('./routes/index');
 
 // set port for heroku and 3001 if on local machine
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 // create express application
 const app = express();
