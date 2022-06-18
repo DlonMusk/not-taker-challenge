@@ -7,9 +7,15 @@
 The application’s front end has been given to us and It's our job to build the back end, connect the two, and then deploy the entire application to Heroku.
 
 ## Table of Contents:
+- [Deployed](#deployed)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Mock-up](#mock-up)
 - [Credits](#credits)
+
+## Deployed
+
+Click [Here](https://rocky-depths-36986.herokuapp.com/) for app deployed using heroku
 
 
 ## Installation
@@ -26,6 +32,12 @@ The applications dependancys will be installed by using the following command:
 ```bash
 npm start
 ```
+
+## Mock-up
+![index.html mock-up](./assets/indexImg.png)
+---
+![notes.html mock-up](./assets/notesImg.png)
+---
 
 ## Credits
 Software Designer: Dylan Knight
