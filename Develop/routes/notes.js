@@ -1,10 +1,10 @@
 // import helper functions and set notes as a router
 const notes = require('express').Router();
-const { readFromFile, readAndAppend }  = require('../helpers/fsUtils')
+const { readFromFile, readAndAppend }  = require('../helpers/fsUtils');
+const { v4: uuidv4 } = require('uuid');
 
 // on get call read from file
 notes.get('/', (req, res) => {
-    console.log("NOTES.GET");
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
@@ -18,7 +18,8 @@ notes.post('/', (req, res) => {
     if(title && text){
         const newNote = {
             title,
-            text
+            text,
+            id: uuidv4()
         };
         
         // read data in from db.json and append new data
@@ -34,5 +35,10 @@ notes.post('/', (req, res) => {
         res.json(response);
     }else res.json('Error in posting feedback')
 });
+
+
+// notes.delete('/:id', (req, res) => {
+
+// })
 
 module.exports = notes;

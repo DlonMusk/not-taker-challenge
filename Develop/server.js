@@ -16,11 +16,6 @@ app.use('/api', api);
 app.use(express.static('public'));
 
 
-// no input directs to index.html
-app.get('/', (req, res) => {
-    console.log('/');
-    res.sendFile(path.join(__dirname, '/public/index.html'));
-});
 
 // /notes path directs to notes.html
 app.get('/notes', (req, res) => {
