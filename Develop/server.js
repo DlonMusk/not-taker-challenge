@@ -19,13 +19,11 @@ app.use(express.static('public'));
 
 // /notes path directs to notes.html
 app.get('/notes', (req, res) => {
-    console.log('/notes');
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
 // if path is not recognized send the user back to index.html
 app.get('*', (req, res) => {
-    console.log('*')
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
