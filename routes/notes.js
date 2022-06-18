@@ -1,7 +1,9 @@
 // import helper functions and set notes as a router
 const notes = require('express').Router();
-const { readFromFile, readAndAppend }  = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, writeToFile }  = require('../helpers/fsUtils');
 const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
+const path = require('path')
 
 // on get call read from file
 notes.get('/', (req, res) => {
@@ -36,9 +38,36 @@ notes.post('/', (req, res) => {
     }else res.json('Error in posting feedback')
 });
 
+// on delete call delete the note at selected id
+notes.delete('/:id', (req, res) => {
+    // read in data from database not asynchronously
+    let databaseArray = fs.readFileSync(path.join(__dirname, '../db/db.json'));
 
-// notes.delete('/:id', (req, res) => {
+    // parse JSON into data
+    let data = JSON.parse(databaseArray);
 
-// })
+    // keep track of index
+    let index = 0;
+
+    // find the index
+    for (let i = 0; i < data.length; i++) {
+        console.info(data[i].id);
+        if (data[i].id === req.params.id) {
+            console.info(i);
+            index = i;
+            break;
+        }
+    }
+
+    // remove the data at selected index
+    data.splice(index, 1);
+
+    // rewrite over current data
+    writeToFile(path.join(__dirname, '../db/db.json'), data);
+
+    // send response
+    res.json('note deleted')
+
+})
 
 module.exports = notes;
